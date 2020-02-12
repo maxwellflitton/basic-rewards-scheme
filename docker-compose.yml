@@ -3,13 +3,13 @@ version: '3'
 services:
 
   mysql:
-    container_name: 'main-mysql'
+    container_name: 'reward-mysql'
     image: "mysql:5.7"
     ports:
       - "3306:3306"
 
   flask:
-    container_name: 'main-flask'
+    container_name: 'reward-flask'
     build: .
     ports:
       - "5000:5000"
@@ -18,12 +18,12 @@ services:
     depends_on:
         - mysql
   redis:
-    container_name: 'main-redis'
+    container_name: 'reward-redis'
     image: 'redis:5.0.3'
     ports:
       - '6379:6379'
   nginx:
-    container_name: 'main-nginx'
+    container_name: 'reward-nginx'
     image: "nginx:1.13.5"
     ports:
       - "80:80"
