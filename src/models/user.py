@@ -1,19 +1,19 @@
 from werkzeug.security import generate_password_hash
 
-from run import app_instance
+from run import app_instance as app
 
 
-class User(app_instance.db.Model):
+class User(app.db.Model):
     """
     This is a class for managing the User model for the database.
     """
 
     __table_args__ = {'extend_existing': True}
 
-    id = app_instance.db.Column(app_instance.db.Integer, primary_key=True)
-    username = app_instance.db.Column(app_instance.db.String(80), unique=True, nullable=False)
-    email = app_instance.db.Column(app_instance.db.String(120), unique=True, nullable=False)
-    password = app_instance.db.Column(app_instance.db.String(128))
+    id = app.db.Column(app.db.Integer, primary_key=True)
+    username = app.db.Column(app.db.String(80), unique=True, nullable=False)
+    email = app.db.Column(app.db.String(120), unique=True, nullable=False)
+    password = app.db.Column(app.db.String(128))
 
     @staticmethod
     def hash_password(password: str) -> str:

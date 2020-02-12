@@ -25,6 +25,9 @@ class AppEngine(metaclass=Singleton):
         :return: None
         """
         from models.user import User
+        from models.company import Company
+        from models.reward import Reward
+        from models.reward_instance import RewardInstance
         self.db.create_all()
 
 
