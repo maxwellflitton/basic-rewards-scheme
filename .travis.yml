@@ -1,2 +1,2 @@
-
+before_script: apt-get install python3-venv
 script: bash scripts/travis_build.sh
