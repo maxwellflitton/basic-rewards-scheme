@@ -10,7 +10,7 @@ class TestGlobalParams(TestCase):
     def test___init__(self, mock_read_yml):
         mock_read_yml.return_value = {"one": 1, "two": 2}
         test = GlobalParams()
-        self.assertEqual({'DB_URL': 'sqlite:///test.db'}, test)
+        self.assertEqual({'one': 1, 'two': 2}, test)
 
         test_two = GlobalParams()
         self.assertEqual(id(test), id(test_two))
