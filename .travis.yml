@@ -5,9 +5,13 @@ python:
 
 install: pip install -r requirements.txt
 
-cd src
-export PYTHONPATH=$PYTHONPATH:$(pwd)
-cd ..
+before_script:
+  cd src
+  export PYTHONPATH=$PYTHONPATH:$(pwd)
+  cd ..
 
-cd tests
-python -m unittest discover
+  cd tests
+  python -m unittest discover
+  cd ..
+
+script: run.py
