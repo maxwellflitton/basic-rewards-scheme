@@ -1,20 +1,13 @@
-services:
-  - docker
 
-env:
-  - DOCKER_COMPOSE_VERSION=1.23.2
+language: python
+python:
+  - 3.6
 
-before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname-m`> docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - docker --version
-  - docker-compose version
+install: pip install -r requirements.txt
 
-script:
-  - docker-compose build mysql
-  - docker-compose build flask
-  - docker-compose build redis
-  - docker-compose build nginx
+cd src
+export PYTHONPATH=$PYTHONPATH:$(pwd)
+cd ..
 
+cd tests
+python -m unittest discover
