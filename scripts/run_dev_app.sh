@@ -5,4 +5,7 @@ cd $SCRIPTPATH
 cd ..
 
 source venv/bin/activate
+cd src
+export PYTHONPATH="$PWD"
+cd ..
 python run.py dev_tools/config.yml
