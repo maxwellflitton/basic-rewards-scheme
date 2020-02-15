@@ -24,7 +24,6 @@ def import_models(database) -> None:
 
 @app.route("/")
 def home():
-    message = "This is a test"
     return render_template('index.html', title="home page - rewards")
 
 
