@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from src.views.user import user_views
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='src/templates')
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
 db = SQLAlchemy(app)
 
@@ -24,7 +24,8 @@ def import_models(database) -> None:
 
 @app.route("/")
 def home():
-    return "this is working"
+    message = "This is a test"
+    return render_template('index.html', title="home page - rewards")
 
 
 app.register_blueprint(user_views, url_prefix="/users")
