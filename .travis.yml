@@ -10,6 +10,9 @@ jobs:
     script:
       - python -m unittest discover tests
       - docker-compose build redis
+      - docker-compose build mysql
+      - docker-compose build flask
+      - docker-compose build nginx
 #script: python -m unittest discover tests
 #docker-compose build redis
 
