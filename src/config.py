@@ -22,6 +22,9 @@ class GlobalParams(dict, metaclass=Singleton):
 
         :return: (dict) data from yaml file
         """
-        with open(sys.argv[-1]) as file:
+        file_name = sys.argv[-1]
+        if file_name == "tests":
+            file_name = "dev_tools/config.yml"
+        with open(file_name) as file:
             data = yaml.load(file, Loader=yaml.FullLoader)
         return data

@@ -1,6 +1,7 @@
 import os
 import sys
 import unittest
+from mock import patch
 import tempfile
 
 from run import app, db, import_models
@@ -25,4 +26,4 @@ class FlaskrTestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main(argv=[sys.argv[-1]])
+    unittest.main()
