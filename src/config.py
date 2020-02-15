@@ -1,7 +1,7 @@
 import sys
 import yaml
 
-from singleton import Singleton
+from src.singleton import Singleton
 
 
 class GlobalParams(dict, metaclass=Singleton):

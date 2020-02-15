@@ -1,8 +1,8 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-from views.user import user_views
-from config import GlobalParams
+from src.views.user import user_views
+from src.config import GlobalParams
 
 params = GlobalParams()
 app = Flask(__name__, template_folder='src/templates')
