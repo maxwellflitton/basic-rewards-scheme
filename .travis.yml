@@ -1,17 +1,2 @@
 
-language: python
-python:
-  - 3.6
-
-install: pip install -r requirements.txt
-
-before_script:
-  cd src
-  export PYTHONPATH=$PYTHONPATH:$(pwd)
-  cd ..
-
-  cd tests
-  python -m unittest discover
-  cd ..
-
-script: run.py
+script: bash scripts/travis_build.sh
