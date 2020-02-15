@@ -5,4 +5,5 @@ cd $SCRIPTPATH
 cd ..
 
 cd dev_tools
+docker stop $(docker ps -a -q)
 docker-compose up
