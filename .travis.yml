@@ -7,17 +7,12 @@ before_script: export PYTHONPATH=$PYTHONPATH:$(pwd)/src
 
 jobs:
   include:
-    - stage tests
-      name: "Unit tests"
-      script:
-        - python -m unittest discover tests
-    - stage: tests
-      name: "Docker Build"
-      script:
-        - docker-compose build redis
-        - docker-compose build mysql
-        - docker-compose build flask
-        - docker-compose build nginx
+    script:
+      - python -m unittest discover tests
+      - docker-compose build redis
+      - docker-compose build mysql
+      - docker-compose build flask
+      - docker-compose build nginx
 #script: python -m unittest discover tests
 #docker-compose build redis
 
