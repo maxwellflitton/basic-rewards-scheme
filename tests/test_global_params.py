@@ -1,12 +1,12 @@
 from unittest import main, TestCase
 from mock import patch
 
-from config import GlobalParams, Singleton
+from src.config import GlobalParams, Singleton
 
 
 class TestGlobalParams(TestCase):
 
-    @patch("config.GlobalParams.get_yml_file")
+    @patch("src.config.GlobalParams.get_yml_file")
     def test___init__(self, mock_read_yml):
         mock_read_yml.return_value = {"one": 1, "two": 2}
         test = GlobalParams()
@@ -16,9 +16,9 @@ class TestGlobalParams(TestCase):
         self.assertEqual(id(test), id(test_two))
         Singleton._instances = {}
 
-    @patch("config.yaml")
-    @patch("config.open")
-    @patch("config.sys")
+    @patch("src.config.yaml")
+    @patch("src.config.open")
+    @patch("src.config.sys")
     def test_get_yml_file(self, mock_sys, mock_open, mock_yaml):
         mock_sys.argv = ["test.yml"]
         out_come = GlobalParams.get_yml_file()

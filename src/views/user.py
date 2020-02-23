@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from src.forms import LoginForm, RegistrationForm
-from models import model_factory
+from src.models import model_factory
 
 user_views = Blueprint('user_views', __name__, template_folder='templates')
 

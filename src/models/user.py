@@ -2,11 +2,10 @@ from sqlalchemy import Column, Integer, String
 from werkzeug.security import generate_password_hash
 from uuid import uuid4
 
-from database.engine import Base
-from database.engine import session
+from src.database import DbEngine
 
 
-class User(Base):
+class User(DbEngine.BASE):
     """
     This is a class for managing the User model for the database.
     """
@@ -47,10 +46,9 @@ class User(Base):
 
         :return: None
         """
+        # TODO: put into __init__
         self.password = self.hash_password(password=self.password)
         self.unique_id = uuid4()
-        session.add(self)
-        session.commit()
 
     def __repr__(self):
         return "<User {}>".format(self.username)

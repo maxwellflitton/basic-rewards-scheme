@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-from database.engine import Base
+from src.database import DbEngine
 
 
-class RewardInstance(Base):
+class RewardInstance(DbEngine.BASE):
     """
     This is a class for managing the RewardInstance model for the database.
     """
