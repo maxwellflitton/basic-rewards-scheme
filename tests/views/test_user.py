@@ -1,7 +1,7 @@
 from unittest import main, TestCase
 from mock import patch, MagicMock
 
-from views.user import user, login, register
+from src.views.user import user, login, register
 
 
 class TestUserViews(TestCase):
@@ -9,13 +9,13 @@ class TestUserViews(TestCase):
     def test_user(self):
         self.assertEqual("basic user view", user())
 
-    @patch("views.user.login_user")
-    @patch("views.user.render_template")
-    @patch("views.user.redirect")
-    @patch("views.user.flash")
-    @patch("views.user.url_for")
-    @patch("views.user.model_factory")
-    @patch("views.user.LoginForm")
+    @patch("src.views.user.login_user")
+    @patch("src.views.user.render_template")
+    @patch("src.views.user.redirect")
+    @patch("src.views.user.flash")
+    @patch("src.views.user.url_for")
+    @patch("src.views.user.model_factory")
+    @patch("src.views.user.LoginForm")
     def test_login(self, mock_login, mock_model_factory, mock_url_for, mock_flash, mock_redirect, mock_render_template,
                    mock_login_user):
         mock_login.return_value.validate_on_submit.return_value = False
@@ -57,12 +57,12 @@ class TestUserViews(TestCase):
         mock_redirect.assert_called_once_with(mock_url_for.return_value)
         mock_url_for.assert_called_once_with("index")
 
-    @patch("views.user.url_for")
-    @patch("views.user.render_template")
-    @patch("views.user.redirect")
-    @patch("views.user.flash")
-    @patch("views.user.model_factory")
-    @patch("views.user.RegistrationForm")
+    @patch("src.views.user.url_for")
+    @patch("src.views.user.render_template")
+    @patch("src.views.user.redirect")
+    @patch("src.views.user.flash")
+    @patch("src.views.user.model_factory")
+    @patch("src.views.user.RegistrationForm")
     def test_register(self, mock_reg_form, mock_model_factory, mock_flash, mock_redirect, mock_render_template,
                       mock_url_for):
         mock_reg_form.return_value.validate_on_submit.return_value = False
