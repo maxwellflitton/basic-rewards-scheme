@@ -2,6 +2,7 @@ from unittest import main, TestCase
 from mock import patch
 
 from src.config import GlobalParams, Singleton
+Singleton._instances = {}
 
 
 class TestGlobalParams(TestCase):

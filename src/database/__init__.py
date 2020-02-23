@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-from config import GlobalParams
+from src.config import GlobalParams
 params = GlobalParams()
 
 
@@ -29,10 +29,10 @@ class DbEngine:
 
         :return: None
         """
-        from models.user import User
-        from models.reward import Reward
-        from models.company import Company
-        from models.reward_instance import RewardInstance
+        from src.models.user import User
+        from src.models.reward import Reward
+        from src.models.company import Company
+        from src.models.reward_instance import RewardInstance
         User.__table__.create(bind=self.engine)
         Company.__table__.create(bind=self.engine)
         Reward.__table__.create(bind=self.engine)
