@@ -2,9 +2,12 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from src.views.user import user_views
+from src.config import GlobalParams
 
+
+params = GlobalParams()
 app = Flask(__name__, template_folder='src/templates')
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = params.get("DB_URL")
 app.config['SECRET_KEY'] = 'mysecretkey'
 db = SQLAlchemy(app)
 
