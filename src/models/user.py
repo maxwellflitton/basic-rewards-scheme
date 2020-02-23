@@ -1,4 +1,6 @@
 from werkzeug.security import generate_password_hash
+from uuid import uuid4
+from flask_login import UserMixin
 
 from run import db
 
@@ -37,6 +39,17 @@ class User(db.Model):
         if self.hash_password(password=password) == self.password:
             return True
         return False
+
+    def save_instance(self) -> None:
+        """
+        Saves instance to database.
+
+        :return: None
+        """
+        self.password = self.hash_password(password=self.password)
+        self.unique_id = uuid4()
+        db.session.add(self)
+        db.session.commit()
 
     def __repr__(self):
         return "<User {}>".format(self.username)
