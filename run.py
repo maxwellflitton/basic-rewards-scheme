@@ -2,13 +2,19 @@ from flask import Flask, render_template
 from flask_login import LoginManager
 
 from src.views.user import user_views
-from src.config import GlobalParams
+from config import GlobalParams
 from models.user import User
+from models.reward import Reward
+from models.company import Company
+from models.reward_instance import RewardInstance
 
 from src.database.engine import engine, Base
-from sqlalchemy.schema import CreateTable
 
-CreateTable(User.__table__).compile(engine)
+
+User.__table__.create(bind=engine)
+Company.__table__.create(bind=engine)
+Reward.__table__.create(bind=engine)
+RewardInstance.__table__.create(bind=engine)
 
 
 params = GlobalParams()
