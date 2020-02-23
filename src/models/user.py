@@ -1,5 +1,6 @@
 from werkzeug.security import generate_password_hash
 from uuid import uuid4
+from flask_login import UserMixin
 
 from run import db
 

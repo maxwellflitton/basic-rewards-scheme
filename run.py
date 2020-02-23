@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 from src.views.user import user_views
 
@@ -7,6 +8,7 @@ app = Flask(__name__, template_folder='src/templates')
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
 app.config['SECRET_KEY'] = 'mysecretkey'
 db = SQLAlchemy(app)
+# login = LoginManager(app)
 
 
 def import_models(database) -> None:
@@ -16,9 +18,9 @@ def import_models(database) -> None:
     :return: None
     """
     from models.user import User
-    from models.company import Company
-    from models.reward import Reward
-    from models.reward_instance import RewardInstance
+    # from models.company import Company
+    # from models.reward import Reward
+    # from models.reward_instance import RewardInstance
     database.create_all()
 
 
