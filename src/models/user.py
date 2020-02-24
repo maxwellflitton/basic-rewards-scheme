@@ -1,23 +1,23 @@
+from sqlalchemy import Column, Integer, String
 from werkzeug.security import generate_password_hash
 from uuid import uuid4
-from flask_login import UserMixin
 
-from run import db
+from src.database import DbEngine
 
 
-class User(db.Model):
+class User(DbEngine.BASE):
     """
     This is a class for managing the User model for the database.
     """
 
-    __table_args__ = {'extend_existing': True}
+    __tablename__ = "users"
 
-    id = db.Column(db.Integer, primary_key=True)
-    unique_id = db.Column(db.String(120), unique=True)
-    credit_amount = db.Column(db.Integer, default=0, nullable=False)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(128))
+    id = Column(Integer, primary_key=True)
+    unique_id = Column(String(120), unique=True)
+    credit_amount = Column(Integer, default=0, nullable=False)
+    username = Column(String(80), unique=True, nullable=False)
+    email = Column(String(120), unique=True, nullable=False)
+    password = Column(String(128))
 
     @staticmethod
     def hash_password(password: str) -> str:
@@ -46,10 +46,9 @@ class User(db.Model):
 
         :return: None
         """
+        # TODO: put into __init__
         self.password = self.hash_password(password=self.password)
         self.unique_id = uuid4()
-        db.session.add(self)
-        db.session.commit()
 
     def __repr__(self):
         return "<User {}>".format(self.username)

@@ -1,21 +1,24 @@
-from run import db
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
+
+from src.database import DbEngine
 
 
-class RewardInstance(db.Model):
+class RewardInstance(DbEngine.BASE):
     """
     This is a class for managing the RewardInstance model for the database.
     """
-    __table_args__ = {'extend_existing': True}
+    __tablename__ = "rewardinstances"
 
-    id = db.Column(db.Integer, primary_key=True)
-    unique_id = db.Column(db.String(120), unique=True)
-    title = db.Column(db.String(120))
-    redeemed = db.Column(db.DateTime, nullable=True)
+    id = Column(Integer, primary_key=True)
+    unique_id = Column(String(120), unique=True)
+    title = Column(String(120))
+    redeemed = Column(DateTime, nullable=True)
 
-    reward = db.relationship("Reward")
-    reward_id = db.Column(db.Integer, db.ForeignKey("reward.id"), nullable=False)
-    user = db.relationship("User")
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    reward = relationship("Reward")
+    reward_id = Column(Integer, ForeignKey("rewards.id"), nullable=False)
+    user = relationship("User")
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
     def __repr__(self):
         return "<RewardInstance {}>".format(self.title)
